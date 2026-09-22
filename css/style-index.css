@@ -1,0 +1,694 @@
+/* ===================================== 🌈 RESET & GLOBAL ===================================== */
+body {
+    margin: 0;
+    font-family: "Prompt", sans-serif;
+    background: #111;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+p {
+    text-align:center; 
+    color:#aaa;
+}
+h2{
+    text-align: center
+}
+
+/* ===================================== 🌈 NAVBAR ===================================== */
+.Tap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.Logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+/* ===================================== 🔍 SEARCH BAR ===================================== */
+.center form {
+    display: flex;
+    align-items: center;
+}
+
+.Insearch {
+    width: 250px;
+    height: 34px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    padding-left: 15px;
+    outline: none;
+    font-size: 14px;
+}
+
+.btnSearch {
+    width: 40px;
+    height: 36px;
+    border: none;
+    background: #333;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnSearch img {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===================================== 👤 USER DROPDOWN ===================================== */
+.right {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.User {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.User:hover {
+    transform: scale(1.05);
+}
+
+.dropdown {
+    position: relative;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #222;
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #2b98b3;
+}
+
+.username-below {
+    font-size: 13px;
+    color: #ddd;
+    margin-top: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ===================================== 🧩 MAIN LAYOUT ===================================== */
+.Main {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 100px auto 0;
+    /* ระยะห่างจาก navbar */
+}
+
+/* ===== Left Sidebar ===== */
+.leftmain {
+    position: fixed;
+    top: 80px;
+    bottom: 10px;
+    left: 10px;
+    width: 20%;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+    /* ป้องกัน scroll ของ player */
+}
+
+/* Player ข้างในกล่องซ้าย */
+#player-container {
+    width: 100%;
+}
+
+#main-player {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#selected-song-info {
+    font-size: 14px;
+    color: #222;
+    text-align: center;
+}
+
+/* ===== Fixed Right Sidebar ===== */
+.rightmain {
+    position: fixed;
+    top: 80px;
+    bottom: 10px;
+    right: 10px;
+    width: 20%;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+}
+
+/* ===== Center Content ===== */
+.centermain {
+    position: fixed;
+    top: 80px;
+    bottom: 10px;
+    width: 55.5%; /* ความกว้าง 60% */
+    margin-left: 19%;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    padding: 10px;
+    height: calc(100vh - 110px); /* พอดีกับหน้าจอ ลบระยะบน+ล่าง */
+    overflow-y: auto; /* เลื่อนเนื้อหาแนวตั้งได้ */
+    overflow-x: hidden; /* ป้องกันเลื่อนแนวนอน */
+}
+
+/* ===== ซ่อน scrollbar ทั้งหมด ===== */
+.centermain::-webkit-scrollbar {
+    display: none; /* Chrome, Edge, Safari */
+}
+
+.centermain {
+    -ms-overflow-style: none; /* IE, Edge เก่า */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* ===================================== 🎵 SONG GRID & CARD ===================================== */
+.gridcard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    background: #222;
+    border-radius: 12px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, background 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    transform: translateY(-6px);
+}
+
+/* ===== Song Image & Text ===== */
+.ImgSong {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin: 5px 0 0;
+}
+
+.card p {
+    font-size: 13px;
+    color: #ccc;
+    margin: 3px 0 0;
+}
+
+/* ===== Play Icon ===== */
+.play-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.card:hover .play-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.play-icon img {
+    width: 35px;
+    height: 35px;
+}
+
+/* ===== Favorite Button ===== */
+.fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.fav-btn.active {
+    color: gold;
+}
+
+/* ===================================== ⚙️ USER PANEL (Right Box) ===================================== */
+.user-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.user-btn {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    background: #2a2a2a;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.user-btn:hover {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    transform: translateY(-3px);
+}
+
+.user-panel input[type="text"] {
+    width: 98%;
+    height: 30px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+}
+
+#selected-song-info {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 15px;
+    color: #ccc;
+}
+
+/* ===== Hide Scrollbar in sidebars ===== */
+.leftmain::-webkit-scrollbar,
+.rightmain::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #222;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ปุ่มโปรด */
+.fav-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.fav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.fav-btn.active {
+    color: gold;
+}
+
+/* ===== ปุ่มบวก ===== */
+.add-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 50px;
+    /* อยู่ใกล้ดาว */
+    box-shadow: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s;
+}
+
+.add-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.playlist-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgba(15, 15, 15, 0.95);
+    border-radius: 12px;
+    padding: 12px;
+    z-index: 999;
+    width: 180px;
+    animation: fadeIn 0.25s ease;
+}
+
+.playlist-dropdown select,
+.playlist-dropdown button {
+    width: 100%;
+    margin-top: 6px;
+    border: none;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.playlist-dropdown button:hover {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===== Playlist Card ===== */
+.playlist-card {
+    position: relative;
+    background: #222;
+    border-radius: 12px;
+    padding: 20px 15px;
+    margin: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+.playlist-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    color: white;
+}
+
+/* ===== Playlist Name ===== */
+.playlist-card .playlist-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    word-wrap: break-word;
+}
+
+/* ===== Buttons ===== */
+.playlist-card .card-buttons {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 5px;
+}
+
+.playlist-card .edit-btn,
+.playlist-card .delete-btn {
+    width: 28px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.playlist-card .edit-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+}
+
+.playlist-card .delete-btn:hover {
+    background: rgba(255,80,80,0.8);
+    color: white;
+    transform: scale(1.1);
+}
+/* ===== Song Card ===== */
+.song-card {
+    position: relative;
+    background: #222;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+/* ===== Album Image ===== */
+.song-card .ImgSong {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ===== Song Title & Artist ===== */
+.song-card h3 {
+    font-size: 16px;
+    margin: 5px 0 0;
+    color: white;
+}
+
+.song-card p {
+    font-size: 13px;
+    color: #ccc;
+    margin: 2px 0 0;
+}
+
+/* ===== Play Button Overlay ===== */
+.song-card .play-icon {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.song-card:hover .play-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.play-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+/* ===== Song Card ปรับให้เหมือน Card ===== */
+.song-card {
+    position: relative;
+    background: #222;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.songs-container .song-card {
+    padding: 6px;
+    max-width: 160px; /* จำกัดความกว้าง */
+}
+
+.song-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+/* ===== Album Image ===== */
+.song-card .ImgSong {
+    width: 100%;
+    height: 180px; /* ความสูงเท่ากับ .card */
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+/* ===== Song Title & Artist ===== */
+.song-card h3 {
+    font-size: 15px; /* เหมือน .card */
+    margin: 5px 0 0;
+    color: white;
+}
+
+.song-card p {
+    font-size: 13px;
+    color: #ccc;
+    margin: 3px 0 0;
+}
+
+/* ===== Play Icon ===== */
+.song-card .play-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.song-card:hover .play-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.play-icon img {
+    width: 35px;
+    height: 35px;
+}
+
+/* ===== Remove Button ===== */
+.song-card .remove-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.song-card .remove-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+/* ===== Songs Container แบบ Grid เหมือน Card ===== */
+.songs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* ปรับจำนวนคอลัมน์ตามขนาดหน้าจอ */
+    gap: 25px; /* ช่องว่างระหว่างการ์ด */
+    justify-content: center; /* จัดตรงกลาง */
+    width: 100%;
+    padding: 10px;
+}
+
+/* ===== Song Card ปรับขนาดให้เข้ากับ Grid ===== */
+.songs-container .song-card {
+    background: #222;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.songs-container .song-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+.songs-container .song-card .ImgSong {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.songs-container .song-card h3 {
+    font-size: 15px;
+    margin: 5px 0 0;
+    color: white;
+}
+
+.songs-container .song-card p {
+    font-size: 13px;
+    color: #ccc;
+    margin: 3px 0 0;
+}

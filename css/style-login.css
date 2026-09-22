@@ -1,0 +1,160 @@
+/*RESET & GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Prompt", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*MAIN CONTAINER */
+.main {
+    display: flex;
+    width: 900px;
+    max-width: 95%;
+    height: 500px;
+    position: relative;
+}
+
+/*LEFT IMAGE (หมุน) */
+.left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.left img {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+}
+
+/*RIGHT FORM BOX */
+.right {
+    flex: 1;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-left: -80px;
+    /* ทับซ้อนกล่องซ้ายเล็กน้อย */
+    padding: 40px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/*FORM STYLING */
+.boxfrom {
+    width: 100%;
+}
+
+.boxfrom h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2b98b3;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin: 10px 0 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.login-form input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #2b98b3;
+}
+
+.button {
+    background: #2b98b3;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #2fc76b;
+}
+
+.login-form a {
+    text-decoration: none;
+    color: #2b98b3;
+}
+
+.login-form a:hover {
+    color: #2fc76b;
+}
+
+/*MESSAGES */
+.error-message {
+    color: #e74c3c;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.success-message {
+    color: #27ae60;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*REGISTER LINK */
+.boxfrom p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.boxfrom a {
+    color: #2b98b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boxfrom a:hover {
+    text-decoration: underline;
+}
+
+/*ANIMATION */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

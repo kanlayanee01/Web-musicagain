@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: "Prompt", sans-serif;
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    background-color: #1b1b1b;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+/* Container หลัก */
+body>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* กล่องฟอร์ม */
+.main {
+    padding: 30px;
+    width: 500px;
+    border-radius: 12px;
+    position: relative;
+    z-index: 2;
+    /* อยู่บนรูป */
+    background-color: #d4edda;
+    /* มีพื้นหลัง */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form select,
+form input[type="file"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #1b1b1b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: linear-gradient(135deg, #2b98b3, #2fc76b);
+}
+
+/* รูปด้านขวา ทับฟอร์มเล็กน้อย */
+.image {
+    position: absolute;
+    right: 170px;
+    /* ทับกล่องฟอร์มเล็กน้อย */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.image img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
